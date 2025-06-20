@@ -1,3 +1,4 @@
+import AddtoCart from "@/components/AddtoCart";
 import Container from "@/components/Container";
 import { IProductItemProps } from "@/components/ProductItem";
 
@@ -12,6 +13,8 @@ export default async function product({ params }: IProductProps) {
   const result = await fetch(`http://localhost:8001/products/${id}`);
   const data = (await result.json()) as IProductItemProps;
 
+  console.log(id);
+
   return (
     <Container>
       <div className="grid grid-cols-12 shadow-md mt-8  rounded-t-2xl">
@@ -25,15 +28,7 @@ export default async function product({ params }: IProductProps) {
           </p>
           <span className="font-bold">قیمت: {data.price} تومان</span>
 
-          <div className="mt-4">
-            <button className="text-green-600 bg-gray-50 px-4 py-1 rounded-3xl cursor-pointer">
-              +
-            </button>
-            <span className="mx-2">2</span>
-            <button className="text-red-600 bg-gray-50 px-4 py-1 rounded-3xl cursor-pointer">
-              -
-            </button>
-          </div>
+          <AddtoCart id={id} />
         </div>
       </div>
     </Container>
