@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
 import "./globals.css";
+import { ShoppingCartContextProvider } from "@/context/ShoppingCartContext";
 
 export const metadata: Metadata = {
   title: "فروشگاه تستی",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body>
-        <Layout>{children}</Layout>
+        <ShoppingCartContextProvider>
+          <Layout>{children}</Layout>
+        </ShoppingCartContextProvider>
       </body>
     </html>
   );
