@@ -1,24 +1,29 @@
 import Container from "@/components/Container";
+import { IProductItemProps } from "@/components/ProductItem";
 
-export default function product() {
+interface IProductProps {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ "" }>;
+}
+
+export default async function product({ params }: IProductProps) {
+  const { id } = await params;
+
+  const result = await fetch(`http://localhost:8001/products/${id}`);
+  const data = (await result.json()) as IProductItemProps;
+
   return (
     <Container>
       <div className="grid grid-cols-12 shadow-md mt-8  rounded-t-2xl">
         <div className="col-span-3 m-2">
-          <img
-            src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3BmLXMxMDgtcG0tNDExMy1tb2NrdXAuanBn.jpg"
-            className="rounded-md object-cover "
-          />
+          <img src={data.image} className="rounded-md object-cover" />
         </div>
         <div className="col-span-9 p-4">
-          <h1 className="font-bold text-2xl">نام محصول</h1>
+          <h1 className="font-bold text-2xl">{data.title}</h1>
           <p className="text-gray-400 my-4 font-stretch-75%">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi ut
-            magni possimus atque nulla in dicta officia incidunt est beatae
-            laudantium ducimus repellat quas error, corrupti cupiditate facere
-            dolorem doloremque?
+            {data.description}
           </p>
-          <span className="font-bold">قیمت: 20000 تومان</span>
+          <span className="font-bold">قیمت: {data.price} تومان</span>
 
           <div className="mt-4">
             <button className="text-green-600 bg-gray-50 px-4 py-1 rounded-3xl cursor-pointer">
