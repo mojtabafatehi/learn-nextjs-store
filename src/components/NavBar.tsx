@@ -1,4 +1,5 @@
 "use client";
+import { useShoppingCartContext } from "@/context/ShoppingCartContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,6 +10,7 @@ const Links = [
 
 export default function navBar() {
   const pathname = usePathname();
+  const { totalProductQty } = useShoppingCartContext();
 
   return (
     <nav className="flex justify-around shadow p-4 ">
@@ -26,6 +28,9 @@ export default function navBar() {
 
       <div>
         <Link href="/cart">سبد خرید</Link>
+        <span className="px-2 py-1 text-white bg-blue-400 rounded-full mx-2">
+          {totalProductQty}
+        </span>
       </div>
     </nav>
   );

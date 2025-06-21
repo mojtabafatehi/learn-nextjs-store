@@ -15,6 +15,10 @@ type CartItems = {
 type TShoppingCartContext = {
   CartItems: CartItems[];
   handleIncreaseProductQty: (id: number) => void;
+  handleDecreaseProductQty: (id: number) => void;
+  productQty: (id: number) => number;
+  totalProductQty: number;
+  handleRemoveProduct: (id: number) => void;
 };
 
 const ShoppingCartContext = createContext({} as TShoppingCartContext);
@@ -29,17 +33,24 @@ export function ShoppingCartContextProvider({
 }: ShoppingCartContextProviderProps) {
   const [CartItems, setCartItems] = useState<CartItems[]>([]);
 
-  const handleIncreaseProductQty = (id: number) => {
-    return setCartItems((currentItem) => {
-      const isNotproductExist =
-        currentItem.find((item) => item.id == id) == null;
+  const productQty = (id: number) => {
+    return CartItems.find((item) => item.id == id)?.qty || 0;
+  };
 
-      console.log(id);
+  const totalProductQty = CartItems.reduce(
+    (total, item) => total + item.qty,
+    0
+  );
+
+  const handleIncreaseProductQty = (id: number) => {
+    return setCartItems((currentItems) => {
+      const isNotproductExist =
+        currentItems.find((item) => item.id == id) == null;
 
       if (isNotproductExist) {
-        return [...currentItem, { id: id, qty: 1 }];
+        return [...currentItems, { id: id, qty: 1 }];
       } else {
-        return currentItem.map((item) => {
+        return currentItems.map((item) => {
           if (item.id == id) {
             return {
               ...item,
@@ -53,9 +64,43 @@ export function ShoppingCartContextProvider({
     });
   };
 
+  const handleDecreaseProductQty = (id: number) => {
+    return setCartItems((currentItems) => {
+      const isLastOne = currentItems.find((item) => item.id == id)?.qty == 1;
+
+      if (isLastOne) {
+        return currentItems.filter((item) => item.id != id);
+      } else {
+        return currentItems.map((item) => {
+          if (item.id == id) {
+            return {
+              ...item,
+              qty: item.qty > 1 ? item.qty - 1 : 0,
+            };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
+  };
+
+  const handleRemoveProduct = (id: number) => {
+    setCartItems((currentItems) => {
+      return currentItems.filter((item) => item.id != id);
+    });
+  };
+
   return (
     <ShoppingCartContext.Provider
-      value={{ CartItems, handleIncreaseProductQty }}
+      value={{
+        CartItems,
+        handleIncreaseProductQty,
+        productQty,
+        totalProductQty,
+        handleDecreaseProductQty,
+        handleRemoveProduct,
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>
