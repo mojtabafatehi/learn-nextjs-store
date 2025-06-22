@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AddtoCart from "./AddtoCart";
 import axios from "axios";
 import { IProductItemProps } from "./ProductItem";
+import { formatNumberWithCammas } from "@/utils/number";
 
 interface ICartItyemProps {
   id: string;
@@ -29,7 +30,7 @@ export default function CartItem({ id, qty }: ICartItyemProps) {
       <div className="col-span-10 p-4">
         <h1 className="text-2xl">{data.title}</h1>
         <p>
-          قیمت: <span>{data.price}</span>
+          قیمت: <span>{formatNumberWithCammas(data.price ?? 0)}</span>
         </p>
         <p>
           تعداد: <span>{qty}</span>

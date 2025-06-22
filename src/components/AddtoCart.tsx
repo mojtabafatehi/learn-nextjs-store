@@ -1,6 +1,5 @@
 "use client";
 import { useShoppingCartContext } from "@/context/ShoppingCartContext";
-import { useContext } from "react";
 
 interface IAddtoCartProps {
   id: string;
@@ -9,7 +8,6 @@ interface IAddtoCartProps {
 export default function AddtoCart({ id }: IAddtoCartProps) {
   const {
     handleIncreaseProductQty,
-    CartItems,
     productQty,
     handleDecreaseProductQty,
     handleRemoveProduct,

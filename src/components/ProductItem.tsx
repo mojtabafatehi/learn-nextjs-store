@@ -1,3 +1,5 @@
+import { formatNumberWithCammas } from "@/utils/number";
+
 export interface IProductItemProps {
   id: string;
   image: string;
@@ -17,7 +19,7 @@ export default function ProductItem({
       <div className="p-4">
         <h2 className="text-xl font-bold">{title}</h2>
         <span className="text-lg font-semibold text-green-600">
-          قیمت: {price} تومان
+          قیمت: {formatNumberWithCammas(price)} تومان
         </span>
       </div>
     </div>
