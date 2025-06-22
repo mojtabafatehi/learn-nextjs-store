@@ -1,6 +1,5 @@
 "use client";
 
-import CartItem from "@/components/CartItem";
 import { createContext, useContext, useState } from "react";
 
 type ShoppingCartContextProviderProps = {

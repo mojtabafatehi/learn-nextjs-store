@@ -8,7 +8,7 @@ const Links = [
   { href: "/store", label: "فروشگاه" },
 ];
 
-export default function navBar() {
+export default function NavBar() {
   const pathname = usePathname();
   const { totalProductQty } = useShoppingCartContext();
 

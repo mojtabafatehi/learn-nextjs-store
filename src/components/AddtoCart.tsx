@@ -15,8 +15,6 @@ export default function AddtoCart({ id }: IAddtoCartProps) {
     handleRemoveProduct,
   } = useShoppingCartContext();
 
-  console.log(CartItems);
-
   return (
     <div>
       <div className="mt-4">

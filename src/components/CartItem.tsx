@@ -1,32 +1,41 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
+import AddtoCart from "./AddtoCart";
+import axios from "axios";
+import { IProductItemProps } from "./ProductItem";
 
-export default function CartItem() {
+interface ICartItyemProps {
+  id: string;
+  qty: number;
+}
+export default function CartItem({ id, qty }: ICartItyemProps) {
+  const [data, setData] = useState({} as IProductItemProps);
+  useEffect(() => {
+    axios(`http://localhost:8001/products/${id}`)
+      .then((result) => {
+        const { data } = result;
+        setData(data);
+      })
+      .catch((err) => {
+        console.error("خطا در گرفتن محصول:", err.message);
+      });
+  }, [id]);
+
   return (
     <div className="grid grid-cols-12 mb-2 shadow-md bg-slate-50">
       <div className="col-span-2">
-        <img
-          className="h-full"
-          src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3BmLXMxMDgtcG0tNDExMy1tb2NrdXAuanBn.jpg"
-        ></img>
+        <img className="h-full" src={data.image}></img>
       </div>
       <div className="col-span-10 p-4">
-        <h1 className="text-2xl">نام محصول</h1>
+        <h1 className="text-2xl">{data.title}</h1>
         <p>
-          قیمت: <span>20000</span>
+          قیمت: <span>{data.price}</span>
         </p>
         <p>
-          تعداد: <span>2</span>
+          تعداد: <span>{qty}</span>
         </p>
 
-        <div className="mt-4">
-          <button className="text-green-600 bg-gray-50 px-4 py-1 rounded-3xl cursor-pointer">
-            +
-          </button>
-          <span className="mx-2">2</span>
-          <button className="text-red-600 bg-gray-50 px-4 py-1 rounded-3xl cursor-pointer">
-            -
-          </button>
-        </div>
+        <AddtoCart key={id} id={id} />
       </div>
     </div>
   );
