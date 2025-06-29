@@ -1,31 +1,30 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Juliet Oma",
       "email": "julie@yahoo.com",
       "number": "08100000000"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "James Williams",
       "email": "jameswilly@gmail.com",
       "number": "08111111111"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Ahmed Ali",
       "email": "ahmedali012@gmail.com",
       "number": "09022222222"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Grace Funsho",
       "email": "gracefunsho@gmail.com",
       "number": "09033333333"
     }
   ],
-
   "products": [
     {
       "id": "1",
@@ -61,22 +60,35 @@
       "title": "محصول 5",
       "description": "توضیحات محصول 5",
       "price": 600000
+    },
+    {
+      "id": "702",
+      "title": "p1",
+      "price": 1000,
+      "image": "https://babaft.com/wp-content/uploads/2024/03/%D8%B1%D9%88%D8%B4-%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D8%A7%D8%B2-%D9%85%D8%AD%D8%B5%D9%88%D9%84-12-1200x795.jpg",
+      "discription": "ئیشمیسلکیسئمدکل"
+    },
+    {
+      "id": "749",
+      "title": "p2",
+      "price": 500000,
+      "image": "https://lenzocam.com/wp-content/uploads/2024/07/lenzocam-8-1.jpg",
+      "description": "tjkkhtfffvd'kpnlskfgewjsvho mre fliohseke,mnk"
     }
   ],
-
   "discounts": [
     {
-      "id": 1,
+      "id": "1",
       "code": "OFF10",
       "percentage": 10
     },
     {
-      "id": 2,
+      "id": "2",
       "code": "OFF20",
       "percentage": 20
     },
     {
-      "id": 3,
+      "id": "3",
       "code": "OFF30",
       "percentage": 30
     }

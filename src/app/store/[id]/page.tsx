@@ -1,6 +1,7 @@
 import AddtoCart from "@/components/AddtoCart";
 import Container from "@/components/Container";
 import { IProductItemProps } from "@/components/ProductItem";
+import { formatNumberWithCammas } from "@/utils/number";
 
 interface IProductProps {
   params: Promise<{ id: string }>;
@@ -26,7 +27,9 @@ export default async function product({ params }: IProductProps) {
           <p className="text-gray-400 my-4 font-stretch-75%">
             {data.description}
           </p>
-          <span className="font-bold">قیمت: {data.price} تومان</span>
+          <span className="font-bold">
+            قیمت: {formatNumberWithCammas(data.price)} تومان
+          </span>
 
           <AddtoCart id={id} />
         </div>

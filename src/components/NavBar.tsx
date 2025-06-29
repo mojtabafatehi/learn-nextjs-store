@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 
 const Links = [
   { href: "/", label: "صفحه اصلی " },
-  { href: "/store", label: "فروشگاه" },
+  { href: "/store", label: "فروشگاه " },
+  { href: "/dashboard", label: "داشبورد" },
 ];
 
 export default function NavBar() {
